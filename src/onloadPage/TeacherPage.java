@@ -52,7 +52,7 @@ public class TeacherPage extends HttpServlet {
         
         //显示每次作业的所有提交文件
         DB db = new DB();
-		String sqlSelect = "SELECT * FROM IssueWork";
+		String sqlSelect = "SELECT * FROM issueWork";
 		ResultSet rs1 = db.query2(sqlSelect);
 		try {
 			while(rs1.next()){

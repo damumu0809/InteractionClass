@@ -56,7 +56,6 @@ public class UploadWork extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
 	}
 
 	/**
@@ -165,7 +164,7 @@ public class UploadWork extends HttpServlet {
           String sqlSelect;
       	
           //Ð´ÈëÊý¾Ý¿â
-        System.out.println(map.get("taskNum"));
+   System.out.println(map.get("taskNum"));
           int taskNum = Integer.parseInt(map.get("taskNum"));
           
           

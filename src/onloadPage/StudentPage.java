@@ -50,7 +50,7 @@ public class StudentPage extends HttpServlet {
 		
 		//连接数据库
 		DB db = new DB();
-		String sqlSelect = "SELECT * FROM IssueWork";
+		String sqlSelect = "SELECT * FROM issueWork";
 		
 		ResultSet rs1 = db.query2(sqlSelect);
 		
