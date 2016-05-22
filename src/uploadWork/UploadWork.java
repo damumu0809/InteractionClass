@@ -38,7 +38,7 @@ public class UploadWork extends HttpServlet {
 	   private File file ;
 
 	   public void init( ){
-	      // »ñÈ¡ÎÄ¼ş½«±»´æ´¢µÄÎ»ÖÃ
+	      // è·å–æ–‡ä»¶å°†è¢«å­˜å‚¨çš„ä½ç½®
 	      filePath = 
 	             getServletContext().getInitParameter("file-upload"); 
 	   }
@@ -63,7 +63,7 @@ public class UploadWork extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// ¼ì²éÎÒÃÇÓĞÒ»¸öÎÄ¼şÉÏ´«ÇëÇó
+		// æ£€æŸ¥æˆ‘ä»¬æœ‰ä¸€ä¸ªæ–‡ä»¶ä¸Šä¼ è¯·æ±‚
 	      isMultipart = ServletFileUpload.isMultipartContent(request);
 	      response.setContentType("text/html;charset=utf-8");
 	      java.io.PrintWriter out = response.getWriter( );
@@ -79,26 +79,26 @@ public class UploadWork extends HttpServlet {
 	         return;
 	      }
 	      DiskFileItemFactory factory = new DiskFileItemFactory();
-	      // ÎÄ¼ş´óĞ¡µÄ×î´óÖµ½«±»´æ´¢ÔÚÄÚ´æÖĞ
+	      // æ–‡ä»¶å¤§å°çš„æœ€å¤§å€¼å°†è¢«å­˜å‚¨åœ¨å†…å­˜ä¸­
 	      factory.setSizeThreshold(maxMemSize);
 	      // Location to save data that is larger than maxMemSize.
 	      factory.setRepository(new File("c:\\temp"));
 	      
-	      // ´´½¨Ò»¸öĞÂµÄÎÄ¼şÉÏ´«´¦Àí³ÌĞò
+	      // åˆ›å»ºä¸€ä¸ªæ–°çš„æ–‡ä»¶ä¸Šä¼ å¤„ç†ç¨‹åº
 	      ServletFileUpload upload = new ServletFileUpload(factory);
-	      // ÔÊĞíÉÏ´«µÄÎÄ¼ş´óĞ¡µÄ×î´óÖµ
+	      // å…è®¸ä¸Šä¼ çš„æ–‡ä»¶å¤§å°çš„æœ€å¤§å€¼
 	      upload.setSizeMax( maxFileSize );
-	      //±àÂë
+	      //ç¼–ç 
 	      upload.setHeaderEncoding("utf-8");
-	      //¶¨ÖÆMap³äµ±×÷ÓÃÓò£¬´æÊı¾İ
+	      //å®šåˆ¶Mapå……å½“ä½œç”¨åŸŸï¼Œå­˜æ•°æ®
 	      Map<String,String> map = new TreeMap<String, String>();
 	      String key;
 	      String value;
 
 	      try{ 
-	      // ½âÎöÇëÇó£¬»ñÈ¡ÎÄ¼şÏî
+	      // è§£æè¯·æ±‚ï¼Œè·å–æ–‡ä»¶é¡¹
 	      List<FileItem> fileItems = upload.parseRequest(request);
-	      // ´¦ÀíÉÏ´«µÄÎÄ¼şÏî
+	      // å¤„ç†ä¸Šä¼ çš„æ–‡ä»¶é¡¹
 	      //Iterator i = fileItems.iterator();
 	      out.println("<html>");
 	      out.println("<head>");
@@ -116,15 +116,15 @@ public class UploadWork extends HttpServlet {
 	      
 	         if ( !fi.isFormField () )	
 	         {
-	            // »ñÈ¡ÉÏ´«ÎÄ¼şµÄ²ÎÊı
-	        	//hidden¶ÔÏóµÄ´«µİ ³öÏÖÎÊÌâjava.lang.NullPointerException
+	            // è·å–ä¸Šä¼ æ–‡ä»¶çš„å‚æ•°
+	        	//hiddenå¯¹è±¡çš„ä¼ é€’ å‡ºç°é—®é¢˜java.lang.NullPointerException
 	        	//Object taskNum = request.getAttribute("taskNum");
 	            fieldName = new String(fi.getFieldName().getBytes("GB2312"),"iso8859-1");
 	            fileName = fi.getName();
 	            contentType = fi.getContentType();
 	            isInMemory = fi.isInMemory();
 	            sizeInBytes = fi.getSize();
-	            // Ğ´ÈëÎÄ¼ş
+	            // å†™å…¥æ–‡ä»¶
 	            filePath = getServletContext().getInitParameter("file-upload");
 	            
 	            if( fileName.lastIndexOf("\\") >= 0 ){
@@ -150,20 +150,20 @@ public class UploadWork extends HttpServlet {
 			}
 	       
 	      }
-	    //ÉÏ´«Ê±¼ä
+	    //ä¸Šä¼ æ—¶é—´
       	Date date = new Date();
       	
-      	//Ê±¼ä¸ñÊ½×ª»»
+      	//æ—¶é—´æ ¼å¼è½¬æ¢
       	SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
       	String uploadTime = ft.format(date);
       	
-      	//Á¬½ÓÊı¾İ¿â
+      	//è¿æ¥æ•°æ®åº“
 	      	DB db = new DB();
 	      
           String sqlInsert;
           String sqlSelect;
       	
-          //Ğ´ÈëÊı¾İ¿â
+          //å†™å…¥æ•°æ®åº“
    System.out.println(map.get("taskNum"));
           int taskNum = Integer.parseInt(map.get("taskNum"));
           
@@ -172,22 +172,22 @@ public class UploadWork extends HttpServlet {
           " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+"xiaomu\",\""+uploadTime+"\",\""+taskNum+"\")";
      
           /*
-           * \»á±»×ªÒå£¬µ«ÊÇ'\'Ò²ÊÇÕıÔò±í´ïÊ½ÖĞµÄ×ªÒå×Ö·û£¨replaceAll µÄ²ÎÊı¾ÍÊÇÕıÔò±í´ïÊ½£©£¬
-           * ĞèÒªÓÃÁ½¸ö´ú±íÒ»¸ö¡£ËùÒÔ£º\\\\±»java×ª»»³É\\,\\ÓÖ±»ÕıÔò±í´ïÊ½×ª»»³É\¡£
+           * \ä¼šè¢«è½¬ä¹‰ï¼Œä½†æ˜¯'\'ä¹Ÿæ˜¯æ­£åˆ™è¡¨è¾¾å¼ä¸­çš„è½¬ä¹‰å­—ç¬¦ï¼ˆreplaceAll çš„å‚æ•°å°±æ˜¯æ­£åˆ™è¡¨è¾¾å¼ï¼‰ï¼Œ
+           * éœ€è¦ç”¨ä¸¤ä¸ªä»£è¡¨ä¸€ä¸ªã€‚æ‰€ä»¥ï¼š\\\\è¢«javaè½¬æ¢æˆ\\,\\åˆè¢«æ­£åˆ™è¡¨è¾¾å¼è½¬æ¢æˆ\ã€‚
            */
           sqlInsert = sqlInsert.replaceAll("\\\\","/");
     System.out.println(sqlInsert);
     System.out.println("3");      
           boolean rs1 = db.query1(sqlInsert);
-        //ÊµÏÖalertÖ®ºóÔÙÌø×ªÒ³Ãæ
-  	    out.print("<script type='text/javascript'>alert('ÉÏ´«³É¹¦£¡');window.location.href='./StudentPage';</script>");
+        //å®ç°alertä¹‹åå†è·³è½¬é¡µé¢
+  	    out.print("<script type='text/javascript'>alert('ä¸Šä¼ æˆåŠŸï¼');window.location.href='./StudentPage';</script>");
 
 	      
 	      /*
-	       * Ö´ĞĞÍêexecuteQueryºó²»ÄÜÔÙÖ´ĞĞexecuteQuery
+	       * æ‰§è¡Œå®ŒexecuteQueryåä¸èƒ½å†æ‰§è¡ŒexecuteQuery
 	       */
 	     /*
-	      //²éÑ¯Óï¾ä
+	      //æŸ¥è¯¢è¯­å¥
           sqlSelect = "SELECT * FROM homework WHERE owner='ll'";
           ResultSet rs2 = db.query2(sqlSelect);
           
@@ -212,7 +212,7 @@ public class UploadWork extends HttpServlet {
 	   
 	    
 	    //response.sendRedirect("./index.html");
-	    //Ò³ÃæµÄÎ»ÖÃ
+	    //é¡µé¢çš„ä½ç½®
 	    
 	    
 	    

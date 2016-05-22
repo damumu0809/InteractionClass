@@ -55,10 +55,10 @@ public class StudentPage extends HttpServlet {
 		ResultSet rs1 = db.query2(sqlSelect);
 		
 		try {
-			int taskNum = 0; //锟节硷拷锟斤拷锟斤拷业
-			String theme = null; //锟斤拷业锟斤拷锟斤拷
-			boolean finish = false; //锟角凤拷锟斤拷锟结交
-			String href = null; //锟结交之锟斤拷锟斤拷锟斤拷锟�
+			int taskNum = 0; //第几次作业
+			String theme = null; //作业内容
+			boolean finish = false; //是否已提交
+			String href = null; //提交之后的链接
 			
 			JSONObject work;
 			List allWork = new ArrayList();
@@ -67,15 +67,15 @@ public class StudentPage extends HttpServlet {
 				taskNum = rs1.getInt("id");
 				theme = rs1.getString("theme");
 				
-				//锟斤拷询锟角凤拷锟结交锟矫达拷锟斤拷业
+				//查询是否提交该次作业
 				String sql = "SELECT * FROM homework WHERE taskNum=\""+taskNum+"\" AND owner='xiaomu'";
 				ResultSet rs2 = db.query2(sql);
 				if(rs2.next()){
-					//锟斤拷锟结交
+					//已提交
 					finish = true;
 					href = rs2.getString("href");
 				}else {
-					//未锟结交
+					//未提交
 					finish = false;
 				}
 				work = new JSONObject();

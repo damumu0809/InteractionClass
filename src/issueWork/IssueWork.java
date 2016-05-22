@@ -42,13 +42,13 @@ public class IssueWork extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		//ÖĞÎÄÂÒÂëÎÊÌâ
+		//ä¸­æ–‡ä¹±ç é—®é¢˜
 		request.setCharacterEncoding("utf-8");
 		
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );
 		
-		//»ñÈ¡×÷ÒµÖ÷ÌâºÍdeadlineÊ±¼ä
+		//è·å–ä½œä¸šä¸»é¢˜å’Œdeadlineæ—¶é—´
 		String theme = request.getParameter("theme");
 	System.out.println(theme);
 		String year = request.getParameter("year");
@@ -63,18 +63,18 @@ public class IssueWork extends HttpServlet {
 		String deadline = ft1.format(deadLine);
 	System.out.println(deadline);
 		
-		//·¢²¼Ê±¼ä
+		//å‘å¸ƒæ—¶é—´
 		Date date = new Date();
 		SimpleDateFormat ft2 = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
     	String issueTime = ft2.format(date);
     	
-    	//Á¬½ÓÊı¾İ¿â
+    	//è¿æ¥æ•°æ®åº“
     	DB db = new DB();
     	String insert = "INSERT INTO IssueWork(theme, deadline, time) VALUES(\""+theme+"\", \""+deadline+"\",\""+issueTime+"\")";
     System.out.println(insert);
     	db.query1(insert);
 
-    	out.print("<script type='text/javascript'>alert('·¢²¼³É¹¦£¡');window.location.href='./TeacherPage';</script>");
+    	out.print("<script type='text/javascript'>alert('å‘å¸ƒæˆåŠŸï¼');window.location.href='./TeacherPage';</script>");
 	}
 
 }

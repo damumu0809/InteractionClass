@@ -43,10 +43,10 @@ public class IssueVote extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );
 		
-		//»ñÈ¡Í¶Æ±Ö÷Ìâ
+		//è·å–æŠ•ç¥¨ä¸»é¢˜
 		String theme = request.getParameter("theme");
 	System.out.println(theme);	
-		//Ñ¡Ïî
+		//é€‰é¡¹
 		String option1 = request.getParameter("option1");
 		String option2 = request.getParameter("option2");
 		String option3 = request.getParameter("option3");
@@ -55,7 +55,7 @@ public class IssueVote extends HttpServlet {
 		String option6 = request.getParameter("option6");
 	System.out.println(option1);
 		
-		//¹ıÆÚÊ±¼ä
+		//è¿‡æœŸæ—¶é—´
 		int year = Integer.parseInt(request.getParameter("year"));
 		int month = Integer.parseInt(request.getParameter("month"));
 		int day = Integer.parseInt(request.getParameter("day"));
@@ -70,16 +70,16 @@ public class IssueVote extends HttpServlet {
 		String expireTime = ft1.format(expiretime);
 	System.out.println(expireTime);
 		
-		//µ¥Ñ¡¶àÑ¡
+		//å•é€‰å¤šé€‰
 		int multipleChoice = Integer.parseInt(request.getParameter("multipleChoice"));
 		
-		//·¢²¼Ê±¼ä
+		//å‘å¸ƒæ—¶é—´
 		Date time = new Date();
 		SimpleDateFormat ft2 = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
 		String issueTime = ft2.format(time);
 	System.out.println(issueTime);
 		
-		//Ğ´ÈëÊı¾İ¿â
+		//å†™å…¥æ•°æ®åº“
 		DB db = new DB();
 		String sqlInsert = "INSERT INTO vote(theme, issuePerson, issueTime, expireTime, option1, number1, option2, number2, option3, number3, option4, number4, option5, number5, option6, number6, multipleChoice) "
 				+ "VALUES(\""+theme+"\", \"teacher\", \""+issueTime+"\", \""+expireTime+"\", \""+option1+"\", 0, \""+option2+"\", 0, \""+option3+"\", 0, \""+option4+"\", 0, \""+option5+"\", 0, \""+option6+"\", 0, "+multipleChoice+")";
@@ -87,7 +87,7 @@ public class IssueVote extends HttpServlet {
 		db.query1(sqlInsert);
 	System.out.println("success");
 		
-	out.print("<script type='text/javascript'>alert('·¢²¼³É¹¦£¡');window.location.href='./index.html';</script>");
+	out.print("<script type='text/javascript'>alert('å‘å¸ƒæˆåŠŸï¼');window.location.href='./index.html';</script>");
 	}
 
 }

@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DB {
-	// JDBC Çı¶¯Æ÷Ãû³ÆºÍÊı¾İ¿âµÄ URL
+	// JDBC é©±åŠ¨å™¨åç§°å’Œæ•°æ®åº“çš„ URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
     static final String DB_URL="jdbc:mysql://localhost/class?charset=utf-8";
 
-    //  Êı¾İ¿âµÄÆ¾¾İ
+    //  æ•°æ®åº“çš„å‡­æ®
     static final String USER = "root";
     static final String PASS = "root";
     
@@ -23,35 +23,35 @@ public class DB {
     }
     public boolean query1(String sql){
     	try{
-        	// ×¢²á JDBC Çı¶¯Æ÷
+        	// æ³¨å†Œ JDBC é©±åŠ¨å™¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÒ»¸öÁ¬½Ó
+            // æ‰“å¼€ä¸€ä¸ªè¿æ¥
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
             
-            // Ö´ĞĞ SQL ²éÑ¯
+            // æ‰§è¡Œ SQL æŸ¥è¯¢
             stmt = conn.createStatement();
             boolean rs =  stmt.execute(sql);
             return rs;
 
          
-//            // ÇåÀí»·¾³
+//            // æ¸…ç†ç¯å¢ƒ
 //            rs.close();
 //            stmt.close();
 //            conn.close();
          }catch(SQLException se){
-            // ´¦Àí JDBC ´íÎó
+            // å¤„ç† JDBC é”™è¯¯
             se.printStackTrace();
          }catch(Exception e){
-            // ´¦Àí Class.forName ´íÎó
+            // å¤„ç† Class.forName é”™è¯¯
             e.printStackTrace();
          }finally{
-//            // ×îºóÊÇÓÃÓÚ¹Ø±Õ×ÊÔ´µÄ¿é
+//            // æœ€åæ˜¯ç”¨äºå…³é—­èµ„æºçš„å—
 //            try{
 //               if(stmt!=null)
 //                  stmt.close();
 //            }catch(SQLException se2){
-//            }// ÎÒÃÇ²»ÄÜ×öÊ²Ã´
+//            }// æˆ‘ä»¬ä¸èƒ½åšä»€ä¹ˆ
 //            try{
 //               if(conn!=null)
 //               conn.close();
@@ -65,35 +65,35 @@ public class DB {
     
     public ResultSet query2(String sql){
     	try{
-        	// ×¢²á JDBC Çı¶¯Æ÷
+        	// æ³¨å†Œ JDBC é©±åŠ¨å™¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÒ»¸öÁ¬½Ó
+            // æ‰“å¼€ä¸€ä¸ªè¿æ¥
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
             
-            // Ö´ĞĞ SQL ²éÑ¯
+            // æ‰§è¡Œ SQL æŸ¥è¯¢
             stmt = conn.createStatement();
             ResultSet rs =  stmt.executeQuery(sql);
             return rs;
 
          
-//            // ÇåÀí»·¾³
+//            // æ¸…ç†ç¯å¢ƒ
 //            rs.close();
 //            stmt.close();
 //            conn.close();
          }catch(SQLException se){
-            // ´¦Àí JDBC ´íÎó
+            // å¤„ç† JDBC é”™è¯¯
             se.printStackTrace();
          }catch(Exception e){
-            // ´¦Àí Class.forName ´íÎó
+            // å¤„ç† Class.forName é”™è¯¯
             e.printStackTrace();
          }finally{
-//            // ×îºóÊÇÓÃÓÚ¹Ø±Õ×ÊÔ´µÄ¿é
+//            // æœ€åæ˜¯ç”¨äºå…³é—­èµ„æºçš„å—
 //            try{
 //               if(stmt!=null)
 //                  stmt.close();
 //            }catch(SQLException se2){
-//            }// ÎÒÃÇ²»ÄÜ×öÊ²Ã´
+//            }// æˆ‘ä»¬ä¸èƒ½åšä»€ä¹ˆ
 //            try{
 //               if(conn!=null)
 //               conn.close();

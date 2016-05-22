@@ -49,19 +49,19 @@ public class VotePage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );	
 		
-		//¶ÁÈ¡Êı¾İ¿âÍ¶Æ±¼ÇÂ¼
+		//è¯»å–æ•°æ®åº“æŠ•ç¥¨è®°å½•
 		DB db = new DB();
 		String sql1 = "SELECT * FROM vote";
 		String sql2 = "SELECT * FROM voteRecord";
 		
-		//Í¶Æ±id¡¢Ö÷Ìâ¡¢Ñ¡Ïî¼°Æ±Êı¡¢µ¥Ñ¡¶àÑ¡
+		//æŠ•ç¥¨idã€ä¸»é¢˜ã€é€‰é¡¹åŠç¥¨æ•°ã€å•é€‰å¤šé€‰
 		String theme;
 		int voteId;
 		String option1, option2, option3, option4, option5, option6;
 		int number1, number2, number3, number4, number5, number6;
 		int multipleChoice;
 		
-		//¼ÇÂ¼ÊÇ·ñÒÑÍ¶Æ±
+		//è®°å½•æ˜¯å¦å·²æŠ•ç¥¨
 		boolean hasVoted = false;
 		
 		List allVote =  new ArrayList();
@@ -88,12 +88,12 @@ public class VotePage extends HttpServlet {
 				multipleChoice = rs1.getInt("multipleChoice");
 				
 				
-				//²éÑ¯ÊÇ·ñÒÑÍ¶Æ±
+				//æŸ¥è¯¢æ˜¯å¦å·²æŠ•ç¥¨
 				sql2 = "SELECT * FROM voteRecord WHERE voteId=\""+voteId+"\" AND person='xiaomu'";
 				ResultSet rs2 = db.query2(sql2);
 				
 				if(rs2.next()){
-					//ÒÑÍ¶Æ±ÏÔÊ¾Í¶Æ±½á¹û
+					//å·²æŠ•ç¥¨æ˜¾ç¤ºæŠ•ç¥¨ç»“æœ
 					vote = new JSONObject();
 					vote.put("theme", theme);
 					vote.put("voteId", voteId);
@@ -112,7 +112,7 @@ public class VotePage extends HttpServlet {
 					vote.put("multipleChoice", multipleChoice);
 					vote.put("hasVoted", hasVoted);
 				}else {
-					//Î´Í¶Æ±ÏÔÊ¾Í¶Æ±
+					//æœªæŠ•ç¥¨æ˜¾ç¤ºæŠ•ç¥¨
 					hasVoted = false;
 					vote = new JSONObject();
 					vote.put("theme", theme);
@@ -134,7 +134,7 @@ public class VotePage extends HttpServlet {
 			message.put("list", allVote);
 			
 			out.println(message.toString());
-			//ÔÚÇ°¶Ë¸ù¾İmultipleChoiceÀ´¼ÓÔØµ¥Ñ¡»¹ÊÇ¶àÑ¡¿ò
+			//åœ¨å‰ç«¯æ ¹æ®multipleChoiceæ¥åŠ è½½å•é€‰è¿˜æ˜¯å¤šé€‰æ¡†
 		} catch (SQLException | JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
