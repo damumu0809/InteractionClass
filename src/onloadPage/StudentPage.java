@@ -106,7 +106,8 @@ public class StudentPage extends HttpServlet {
 //		out.println("<input type='file' name='file' id='file'/>");
 //		out.println("<input type='hidden' name='taskNum' value=\""+taskNum+"\" />");
 //		out.println("<input type='submit' value='提交' />");
-//		out.println("</form>");
+//		out.println("</form>");  
+		//给value赋值变量的时候 \""++""\
 	}
 
 }

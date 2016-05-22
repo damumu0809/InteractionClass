@@ -96,6 +96,7 @@ public class VotePage extends HttpServlet {
 					//已投票显示投票结果
 					vote = new JSONObject();
 					vote.put("theme", theme);
+					vote.put("voteId", voteId);
 					vote.put("option1", option1);
 					vote.put("option2", option2);
 					vote.put("option3", option3);
@@ -115,6 +116,7 @@ public class VotePage extends HttpServlet {
 					hasVoted = false;
 					vote = new JSONObject();
 					vote.put("theme", theme);
+					vote.put("voteId", voteId);
 					vote.put("option1", option1);
 					vote.put("option2", option2);
 					vote.put("option3", option3);
@@ -126,12 +128,12 @@ public class VotePage extends HttpServlet {
 				}
 				allVote.add(vote);
 				
-				JSONObject message = new JSONObject();
-				message.put("code", 0);
-				message.put("list", allVote);
-				
-				out.println(message.toString());
 			}
+			JSONObject message = new JSONObject();
+			message.put("code", 0);
+			message.put("list", allVote);
+			
+			out.println(message.toString());
 			//在前端根据multipleChoice来加载单选还是多选框
 		} catch (SQLException | JSONException e) {
 			// TODO Auto-generated catch block
