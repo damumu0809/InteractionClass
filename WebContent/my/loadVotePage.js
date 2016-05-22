@@ -1,8 +1,7 @@
 //加载投票页面
 var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multiselectable="true">';
 
-$("#votePage").click(function(){
-    //加载投票页面
+    
     $.post("/class/VotePage", function(res){
         var message = $.parseJSON(res);
         var list= message.list;
@@ -67,15 +66,15 @@ $("#votePage").click(function(){
                 //未投票，显示投票页面
 
                 if(multipleChoice == 1){
-                    //多�??
+                    //多选
                     txt = txt +
                         '<form action="/class/Vote" method="post">'+
-                        '<input type="multiple" value="option1">'+option1+
-                        '<input type="multiple" value="option2">'+option2+
-                        '<input type="multiple" value="option3">'+option3+
-                        '<input type="multiple" value="option4">'+option4+
-                        '<input type="multiple" value="option5">'+option5+
-                        '<input type="multiple" value="option6">'+option6+
+                        '<input type="checkbox" value="option1">'+option1+
+                        '<input type="checkbox" value="option2">'+option2+
+                        '<input type="checkbox" value="option3">'+option3+
+                        '<input type="checkbox" value="option4">'+option4+
+                        '<input type="checkbox" value="option5">'+option5+
+                        '<input type="checkbox" value="option6">'+option6+
                         '<button type="submit">参与投票</button>'+
                         '</form>'+
                         '</div>'+
@@ -83,12 +82,12 @@ $("#votePage").click(function(){
                 }else{
                     txt = txt +
                         '<form action="/class/Vote" method="post">'+
-                        '<input type="radio" value="option1">'+option1+
-                        '<input type="radio" value="option2">'+option2+
-                        '<input type="radio" value="option3">'+option3+
-                        '<input type="radio" value="option4">'+option4+
-                        '<input type="radio" value="option5">'+option5+
-                        '<input type="radio" value="option6">'+option6+
+                        '<input type="radio" value="option1" name="vote">'+option1+
+                        '<input type="radio" value="option2" name="vote">'+option2+
+                        '<input type="radio" value="option3" name="vote">'+option3+
+                        '<input type="radio" value="option4" name="vote">'+option4+
+                        '<input type="radio" value="option5" name="vote">'+option5+
+                        '<input type="radio" value="option6" name="vote">'+option6+
                         '<button type="submit">参与投票</button>'+
                         '</form>'+
                         '</div>'+
@@ -106,7 +105,7 @@ $("#votePage").click(function(){
                 $("#voteA").text(theme);
                 $("#voteA").attr("id","voteA"+voteId);
 
-                //空�?�项不显�?
+                //空白项不显示
 //                                    if(option3 == null){
 //                                        $("#panelBody").getAnonymousElementByAttribute("value","option3").attr("display","none");
 //                                    }
@@ -121,7 +120,7 @@ $("#votePage").click(function(){
 //                                    }
 
 
-                alert('7');
+               
             }else {
                 //已投票，显示投票结果
                 txt = txt +
@@ -145,8 +144,8 @@ $("#votePage").click(function(){
                 $("#voteA").attr("href", "#collapseVote" + voteId);
                 $("#voteA").attr("aria-controls", "#collapse" + voteId);
                 $("#voteA").text(theme);
-                alert('8');
-                //空�?�项不显�?
+
+                //空白项不显示
                 if (option3 == null) {
                     $("#panelBody").innerHTML("label").getAnonymousElementByAttribute("text", number3).attr("display", "none");
                     if (option4 == null) {
@@ -163,7 +162,6 @@ $("#votePage").click(function(){
             $("#panelBody").attr("id","panelBody"+voteId);
         });
     });
-});
 
 
 //发布投票添加选项JS

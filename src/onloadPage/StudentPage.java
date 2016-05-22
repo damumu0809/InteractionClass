@@ -48,17 +48,17 @@ public class StudentPage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );		
 		
-		//Á¬½ÓÊý¾Ý¿â
+		//
 		DB db = new DB();
 		String sqlSelect = "SELECT * FROM issueWork";
 		
 		ResultSet rs1 = db.query2(sqlSelect);
 		
 		try {
-			int taskNum = 0; //µÚ¼¸´Î×÷Òµ
-			String theme = null; //×÷ÒµÄÚÈÝ
-			boolean finish = false; //ÊÇ·ñÒÑÌá½»
-			String href = null; //Ìá½»Ö®ºóµÄÁ´½Ó
+			int taskNum = 0; //é”ŸèŠ‚ç¡·æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ä¸š
+			String theme = null; //é”Ÿæ–¤æ‹·ä¸šé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+			boolean finish = false; //é”Ÿè§’å‡¤æ‹·é”Ÿæ–¤æ‹·é”Ÿç»“äº¤
+			String href = null; //é”Ÿç»“äº¤ä¹‹é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
 			
 			JSONObject work;
 			List allWork = new ArrayList();
@@ -67,15 +67,15 @@ public class StudentPage extends HttpServlet {
 				taskNum = rs1.getInt("id");
 				theme = rs1.getString("theme");
 				
-				//²éÑ¯ÊÇ·ñÌá½»¸Ã´Î×÷Òµ
+				//é”Ÿæ–¤æ‹·è¯¢é”Ÿè§’å‡¤æ‹·é”Ÿç»“äº¤é”ŸçŸ«è¾¾æ‹·é”Ÿæ–¤æ‹·ä¸š
 				String sql = "SELECT * FROM homework WHERE taskNum=\""+taskNum+"\" AND owner='xiaomu'";
 				ResultSet rs2 = db.query2(sql);
 				if(rs2.next()){
-					//ÒÑÌá½»
+					//é”Ÿæ–¤æ‹·é”Ÿç»“äº¤
 					finish = true;
 					href = rs2.getString("href");
 				}else {
-					//Î´Ìá½»
+					//æœªé”Ÿç»“äº¤
 					finish = false;
 				}
 				work = new JSONObject();
@@ -102,12 +102,7 @@ public class StudentPage extends HttpServlet {
 		
 		
 		
-//		out.println("<form action='/class/UploadWork' method='post' enctype='multipart/form-data'>");
-//		out.println("<input type='file' name='file' id='file'/>");
-//		out.println("<input type='hidden' name='taskNum' value=\""+taskNum+"\" />");
-//		out.println("<input type='submit' value='Ìá½»' />");
-//		out.println("</form>");  
-		//¸øvalue¸³Öµ±äÁ¿µÄÊ±ºò \""++""\
+
 	}
 
 }
