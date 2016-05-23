@@ -1,4 +1,4 @@
-//¼ÓÔØ×÷ÒµÒ³Ãæ
+//åŠ è½½ä½œä¸šé¡µé¢
 var txt = '<div class="panel-group" id="homeworkAccordion" role="tablist" aria-multiselectable="true">';
 
 $("#student").click(function(){
@@ -6,22 +6,22 @@ $("#student").click(function(){
             '<div class="panel-heading" role="tab" id="workOne">'+
             '<h4 class="panel-title">'+
             '<a  id="WorkA" class="collapsed" role="button" data-toggle="collapse" data-parent="#homeworkAccordion" href="#collapseWorkOne" aria-expanded="false" aria-controls="collapseOne">'+
-            'µÚÒ»´Î×÷Òµ'+
+            'ç¬¬ä¸€æ¬¡ä½œä¸š'+
             '</a>'+
             '</h4>'+
             '</div>'+
             '<div id="collapseWorkOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'+
             '<div class="panel-body" id="panelBody">'+
-            '<p>µÚÒ»´Î×÷ÒµÄÚÈİ </p>';
+            '<p>ç¬¬ä¸€æ¬¡ä½œä¸šå†…å®¹ </p>';
 
         var theme, finish, href, taskNum;
         $.post("/class/StudentPage", function(res){
             var message = $.parseJSON(res);
             var list = res.list;
 
-            //±éÀúÊı×é
+            //éå†æ•°ç»„
             list.forEach(function(item, index, array){
-                //»ñÈ¡JsonÊı¾İ
+                //è·å–Jsonæ•°æ®
                 theme = item.theme;
                 finish = item.finish;
                 href = item.href;
@@ -33,22 +33,22 @@ $("#student").click(function(){
                 $("#collapseWorkOne").attr("id", "collapseWork"+taskNum);
                 $("#WorkA").attr("href", "#collapseWork"+taskNum);
                 $("#WorkA").attr("aria-controls", "#collapse"+taskNum);
-                $("#WorkA").text("µÚ"+taskNum+"´Î×÷Òµ");
+                $("#WorkA").text("ç¬¬"+taskNum+"æ¬¡ä½œä¸š");
                 $("#WorkA").attr("id","WorkA"+taskNum);
                 $("#panelBody p").text(theme);
 
                 if(finish == true){
-                    //ÒÑÍê³ÉÏÔÊ¾×÷ÒµÁ´½Ó
-                    txt = '<a>ÏÂÔØÁ´½Ó</a>'+
+                    //å·²å®Œæˆæ˜¾ç¤ºä½œä¸šé“¾æ¥
+                    txt = '<a>ä¸‹è½½é“¾æ¥</a>'+
                         '</div>'+
                         '</div>+' +
                         '</div>';
                 }else{
-                    //Î´Íê³ÉÏÔÊ¾×÷ÒµÄÚÈİºÍÉÏ´«½çÃæ
+                    //æœªå®Œæˆæ˜¾ç¤ºä½œä¸šå†…å®¹å’Œä¸Šä¼ ç•Œé¢
                     txt ='<form action="/class/UploadWork" method="post" enctype="multipart/form-data">'+
                         '<input type="file" name="file"  />'+
                         '<input type="hidden" name="taskNum" value='+taskNum+ '/>'+
-                        '<input type="submit" value="Ìá½»" />'+
+                        '<input type="submit" value="æäº¤" />'+
                         '</form>'+
                         '</div>'+
                         '</div>'+
@@ -69,23 +69,23 @@ $("#teacher").click(function(){
         var message = $.parseJSON(res);
         var list = res.list;
 
-        //±éÀúÊı×é
+        //éå†æ•°ç»„
         list.forEach(function(item, index, array ){
             txt = '<div class="panel panel-default">'+
                 '<div class="panel-heading" role="tab" id="workOne">'+
                 '<h4 class="panel-title">'+
                 '<a  id="WorkA" class="collapsed" role="button" data-toggle="collapse" data-parent="#homeworkAccordion" href="#collapseWorkOne" aria-expanded="false" aria-controls="collapseOne">'+
-                'µÚÒ»´Î×÷Òµ'+
+                'ç¬¬ä¸€æ¬¡ä½œä¸š'+
                 '</a>'+
                 '</h4>'+
                 '</div>'+
                 '<div id="collapseWorkOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'+
                 '<div class="panel-body" id="panelBody">'+
-                '<p>µÚÒ»´Î×÷ÒµÄÚÈİ </p>';
+                '<p>ç¬¬ä¸€æ¬¡ä½œä¸šå†…å®¹ </p>';
 
             theme = item.theme;
             taskNum = item.taskNum;
-            hrefs_files = item.hrefs_files;//Êı×é
+            hrefs_files = item.hrefs_files;//æ•°ç»„
             hrefs_files.forEach(function(item, index, array){
                 href = item.href;
                 name = item.file;
@@ -103,7 +103,7 @@ $("#teacher").click(function(){
             $("#collapseWorkOne").attr("id", "collapseWork"+taskNum);
             $("#WorkA").attr("href", "#collapseWork"+taskNum);
             $("#WorkA").attr("aria-controls", "#collapse"+taskNum);
-            $("#WorkA").text("µÚ"+taskNum+"´Î×÷Òµ");
+            $("#WorkA").text("ç¬¬"+taskNum+"æ¬¡ä½œä¸š");
             $("#WorkA").attr("id","WorkA"+taskNum);
             $("#panelBody p").text(theme);
 
@@ -113,88 +113,88 @@ $("#teacher").click(function(){
 
     });
 
-    //ÀÏÊ¦·¢²¼×÷Òµ¹¦ÄÜ
-    var txt2 = ' <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalWork">·¢²¼×÷Òµ </button>'+
+    //è€å¸ˆå‘å¸ƒä½œä¸šåŠŸèƒ½
+    var txt2 = ' <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalWork">å‘å¸ƒä½œä¸š </button>'+
                 '<div class="modal fade" id="myModalWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'+
                 '<div class="modal-dialog" role="document">'+
                 '<div class="modal-content">'+
                 '<div class="modal-header">'+
                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                '<h4 class="modal-title" id="myModalLabelWork">·¢²¼×÷Òµ</h4>'+
+                '<h4 class="modal-title" id="myModalLabelWork">å‘å¸ƒä½œä¸š</h4>'+
                 '</div>'+
                 '<form class="form-horizontal" action="/class/IssueWork" method="post">'+
                 '<div class="modal-body">'+
                 '+<div class="form-group">'+
                 '<div class="col-sm-offset-1 col-sm-9">'+
-                '<textarea class="form-control" rows="3" placeholder="ÇëÊäÈë×÷ÒµÄÚÈİ" name="theme"></textarea>'+
+                '<textarea class="form-control" rows="3" placeholder="è¯·è¾“å…¥ä½œä¸šå†…å®¹" name="theme"></textarea>'+
                 '</div>'+
                 '</div>'+
                 '<div class="form-group">'+
                 '<label  class="col-sm-3 control-label">Deadline</label>'+
                 '<div class="col-sm-3">'+
                 '<select class="form-control" name="year">'+
-                '<option value="2016">2016Äê</option>'+
-                '<option value="2017">2017Äê</option>'+
-                '<option value="2018">2018Äê</option>'+
-                '<option value="2019">2019Äê</option>'+
-                '<option value="2020">2020Äê</option>'+
+                '<option value="2016">2016å¹´</option>'+
+                '<option value="2017">2017å¹´</option>'+
+                '<option value="2018">2018å¹´</option>'+
+                '<option value="2019">2019å¹´</option>'+
+                '<option value="2020">2020å¹´</option>'+
                 '</select>'+
                 '</div>'+
                 '<div class="col-sm-2">'+
                 '<select class="form-control" name="month">'+
-                '<option value="1">1ÔÂ</option>'+
-                '<option value="2">2ÔÂ</option>'+
-                '<option value="3">3ÔÂ</option>'+
-                '<option value="4">4ÔÂ</option>'+
-                '<option value="5">5ÔÂ</option>'+
-                '<option value="6">6ÔÂ</option>'+
-                '<option value="7">7ÔÂ</option>'+
-                '<option value="8">8ÔÂ</option>'+
-                '<option value="9">9ÔÂ</option>'+
-                '<option value="10">10ÔÂ</option>'+
-                '<option value="11">11ÔÂ</option>'+
-                '<option value="12">12ÔÂ</option>'+
+                '<option value="1">1æœˆ</option>'+
+                '<option value="2">2æœˆ</option>'+
+                '<option value="3">3æœˆ</option>'+
+                '<option value="4">4æœˆ</option>'+
+                '<option value="5">5æœˆ</option>'+
+                '<option value="6">6æœˆ</option>'+
+                '<option value="7">7æœˆ</option>'+
+                '<option value="8">8æœˆ</option>'+
+                '<option value="9">9æœˆ</option>'+
+                '<option value="10">10æœˆ</option>'+
+                '<option value="11">11æœˆ</option>'+
+                '<option value="12">12æœˆ</option>'+
                 '</select>'+
                 '</div>'+
                 '<div class="col-sm-2">'+
                 '<select class="form-control" name="day">'+
-                '<option value="1">1ÈÕ</option>'+
-                '<option value="2">2ÈÕ</option>'+
-                '<option value="3">3ÈÕ</option>'+
-                '<option value="4">4ÈÕ</option>'+
-                '<option value="5">5ÈÕ</option>'+
-                '<option value="6">6ÈÕ</option>'+
-                '<option value="7">7ÈÕ</option>'+
-                '<option value="8">8ÈÕ</option>'+
-    '<option value="9">9ÈÕ</option>'+
-    '<option value="10">10ÈÕ</option>'+
-    '<option value="11">11ÈÕ</option>'+
-    '<option value="12">12ÈÕ</option>'+
-    '<option value="13">13ÈÕ</option>'+
-    '<option value="14">14ÈÕ</option>'+
-    '<option value="15">15ÈÕ</option>'+
-    '<option value="16">16ÈÕ</option>'+
-    '<option value="17">17ÈÕ</option>'+
-    '<option value="18">18ÈÕ</option>'+
-    '<option value="19">19ÈÕ</option>'+
-    '<option value="20">20ÈÕ</option>'+
-    '<option value="21">21ÈÕ</option>'+
-    '<option value="22">22ÈÕ</option>'+
-    '<option value="23">23ÈÕ</option>'+
-    '<option value="24">24ÈÕ</option>'+
-    '<option value="25">25ÈÕ</option>'+
-    '<option value="26">26ÈÕ</option>'+
-    '<option value="27">27ÈÕ</option>'+
-    '<option value="28">28ÈÕ</option>'+
-    '<option value="29">29ÈÕ</option>'+
-    '<option value="30">30ÈÕ</option>'+
-    '<option value="31">31ÈÕ</option>'+
+                '<option value="1">1æ—¥</option>'+
+                '<option value="2">2æ—¥</option>'+
+                '<option value="3">3æ—¥</option>'+
+                '<option value="4">4æ—¥</option>'+
+                '<option value="5">5æ—¥</option>'+
+                '<option value="6">6æ—¥</option>'+
+                '<option value="7">7æ—¥</option>'+
+                '<option value="8">8æ—¥</option>'+
+    '<option value="9">9æ—¥</option>'+
+    '<option value="10">10æ—¥</option>'+
+    '<option value="11">11æ—¥</option>'+
+    '<option value="12">12æ—¥</option>'+
+    '<option value="13">13æ—¥</option>'+
+    '<option value="14">14æ—¥</option>'+
+    '<option value="15">15æ—¥</option>'+
+    '<option value="16">16æ—¥</option>'+
+    '<option value="17">17æ—¥</option>'+
+    '<option value="18">18æ—¥</option>'+
+    '<option value="19">19æ—¥</option>'+
+    '<option value="20">20æ—¥</option>'+
+    '<option value="21">21æ—¥</option>'+
+    '<option value="22">22æ—¥</option>'+
+    '<option value="23">23æ—¥</option>'+
+    '<option value="24">24æ—¥</option>'+
+    '<option value="25">25æ—¥</option>'+
+    '<option value="26">26æ—¥</option>'+
+    '<option value="27">27æ—¥</option>'+
+    '<option value="28">28æ—¥</option>'+
+    '<option value="29">29æ—¥</option>'+
+    '<option value="30">30æ—¥</option>'+
+    '<option value="31">31æ—¥</option>'+
     '</select>'+
     '</div>'+
     '</div>'+
     '</div>'+
         '<div class="modal-footer">'+
-        '<button type="submit" data-toggle="modal" data-target="#myModalWork" id="issueWork">·¢²¼</button>'+
+        '<button type="submit" data-toggle="modal" data-target="#myModalWork" id="issueWork">å‘å¸ƒ</button>'+
         '</div>'+
         '</form>'+
         '</div>'+
